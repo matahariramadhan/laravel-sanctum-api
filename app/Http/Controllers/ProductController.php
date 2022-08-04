@@ -61,6 +61,17 @@ class ProductController extends Controller
     }
 
     /**
+     * Search the specified resource from storage.
+     *
+     * @param  str  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($slug)
+    {
+        return Product::where('slug', 'like', '%'.$slug.'%')->get();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -68,7 +79,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // will return 1 if product deleted, and 0 if error
+        // will return 1 if product deleted, and 0 if error 
         return Product::destroy($id);
     }
 }
